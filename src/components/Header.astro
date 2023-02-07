@@ -1,0 +1,40 @@
+---
+import { Image } from "@astrojs/image/components";
+---
+
+<div class="w-full">
+	<header class="max-w-7xl mx-auto flex justify-between py-5 items-center px-2">
+		<a href="/" class="flex gap-3 items-center">
+			<Image
+				src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-icon-marilyn-scott-0.png"
+				alt="Logo"
+				class="object-cover"
+				height={32}
+				fit="cover"
+				width={32}
+			/>
+			<p class="text-sm text-gray-500">Best of Spotify</p>
+		</a>
+
+		<nav class="flex gap-5">
+			<a
+				rel="prefetch"
+				href="/best-tracks"
+				class="text-gray-800 text-base hover:text-white hover:bg-emerald-500 px-3 rounded-sm py-2 duration-300"
+				>Best Tracks</a
+			>
+			<a
+				rel="prefetch"
+				href="/best-albums"
+				class="text-gray-800 text-base hover:text-white hover:bg-emerald-500 px-3 rounded-sm py-2 duration-300"
+				>Best Album</a
+			>
+			<a
+				rel="prefetch"
+				href="/best-artists"
+				class="text-gray-800 text-base hover:text-white hover:bg-emerald-500 px-3 rounded-sm py-2 duration-300"
+				>Best Artist</a
+			>
+		</nav>
+	</header>
+</div>

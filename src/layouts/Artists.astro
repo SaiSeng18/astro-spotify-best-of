@@ -1,0 +1,40 @@
+---
+import { API_URL, tokenData } from "../utils/api";
+import ArtistCard from "../components/ArtistCard.astro";
+import Spinner from "../components/Spinner";
+
+const res = await fetch(`${API_URL}/playlists/37i9dQZF1DX9lzz0FRAxgl`, {
+	method: "GET",
+	headers: {
+		"Content-Type": "application/json",
+		Authorization: `Bearer ${tokenData.access_token}`,
+	},
+});
+
+const data = await res.json();
+const artistsLinks = data.tracks.items.map((e) => e.track.artists[0].id);
+
+const artistsJoinLink = artistsLinks.join("%2c");
+
+const artistRes = await fetch(`${API_URL}/artists?ids=${artistsJoinLink}`, {
+	method: "GET",
+	headers: {
+		"Content-Type": "application/json",
+		Authorization: `Bearer ${tokenData.access_token}`,
+	},
+});
+
+const artistsData = await artistRes.json();
+---
+
+<div class="w-full">
+	<div
+		class="max-w-7xl mx-auto grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 px-2 py-5 gap-5 place-content-center w-full">
+		{
+			artistsData.artists.map((artist, index) => (
+				<ArtistCard artist={artist} index={index + 1} />
+			))
+		}
+		{!artistsData && <Spinner />}
+	</div>
+</div>

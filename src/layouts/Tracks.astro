@@ -1,0 +1,22 @@
+---
+import TrackCard from "../components/TrackCard.astro";
+import { API_URL, tokenData } from "../utils/api";
+
+const res = await fetch(`${API_URL}/playlists/37i9dQZEVXbNG2KDcFcKOF`, {
+	headers: {
+		"Content-Type": "application/json",
+		Authorization: `Bearer ${tokenData.access_token}`,
+	},
+});
+
+const data = await res.json();
+
+const tracks = data.tracks.items;
+---
+
+<div class="w-full">
+	<div
+		class="max-w-7xl mx-auto grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 px-2 py-5 gap-5 place-content-center">
+		{tracks.map((track, index) => <TrackCard track={track} index={index + 1} />)}
+	</div>
+</div>
