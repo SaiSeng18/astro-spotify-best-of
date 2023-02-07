@@ -12,13 +12,7 @@ const tokenRes = await fetch(TOKEN_URL, {
 	body: "grant_type=client_credentials",
 	headers: {
 		"Content-Type": "application/x-www-form-urlencoded",
-		Authorization:
-			"Basic " +
-			btoa(
-				import.meta.env.PUBLIC_SPOTIFY_CLIENT_ID +
-					":" +
-					import.meta.env.PUBLIC_SPOTIFY_CLIENT_SECRET
-			),
+		Authorization: "Basic " + btoa(CLIENT_ID + ":" + CLIENT_SECRET),
 	},
 });
 
