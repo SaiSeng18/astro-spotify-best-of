@@ -13,15 +13,20 @@ import react from "@astrojs/react";
 import prefetch from "@astrojs/prefetch";
 
 // https://astro.build/config
-import vercel from "@astrojs/vercel/serverless";
+// import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), image({
-    serviceEntryPoint: "@astrojs/image/sharp"
-  }), react(), prefetch({
-    throttle: 3
-  })],
-  output: "server",
-  adapter: vercel()
+	integrations: [
+		tailwind(),
+		image({
+			serviceEntryPoint: "@astrojs/image/sharp",
+		}),
+		react(),
+		prefetch({
+			throttle: 3,
+		}),
+	],
+	// output: "server",
+	// adapter: vercel()
 });
